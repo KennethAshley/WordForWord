@@ -5,6 +5,7 @@ import Contract from './build/contracts/Word.json';
 import { uniqueId, last } from 'lodash';
 import { Helmet } from 'react-helmet';
 
+
 import AppStyled, {
   WordWrapper,
   Button,
@@ -23,7 +24,7 @@ import AppStyled, {
   Words,
 } from './App.styled';
 
-const address = '0xDcc3c2EfD6AD8F8378ea31C985E3cb97076e096c';
+const address = '0x6d31bCc4273a241AB1F660d049f865386C8976A9';
 
 function App() {
   const [signer, setSigner] = useState('');
@@ -38,7 +39,6 @@ function App() {
   const [currentPrice, setCurrentPrice] = useState(0);
 
   useEffect(() => {
-    console.log('hit')
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
