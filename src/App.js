@@ -243,7 +243,7 @@ function App() {
             </div>
           </Tooltip>
           <Word>
-            isiii
+            isw
           </Word>
         </WordWrapper>
 

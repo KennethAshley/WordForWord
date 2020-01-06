@@ -33,7 +33,7 @@ export const Words = styled.div`
   @media all and (max-width: 736px) {
     margin: 20px 0;
     padding: 0 15px;
-    padding-right: 5px;
+    padding-right: 0;
   }
 `;
 
@@ -170,8 +170,7 @@ export const Description = styled.div`
   margin: 100px 0;
 
   @media all and (max-width: 736px) {
-    margin: 50px 0;
-    text-align: center;
+    margin: 20px 0;
     padding: 15px;
   }
 `;
