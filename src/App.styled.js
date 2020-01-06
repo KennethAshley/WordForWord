@@ -8,6 +8,11 @@ export const Heading = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
+
+  @media all and (max-width: 736px) {
+    text-align: center;
+    flex-direction: column;
+  }
 `;
 
 export const Title = styled.h1`
@@ -24,6 +29,11 @@ export const LastAuthor = styled.div`
 export const Words = styled.div`
   margin: 100px 0;
   margin-right: -20px;
+
+  @media all and (max-width: 736px) {
+    margin: 20px 0;
+    padding: 0 15px;
+  }
 `;
 
 export const Tooltip = styled.div`
@@ -37,6 +47,10 @@ export const Tooltip = styled.div`
   width: 200px;
   top: -70px;
   z-index: 2;
+
+  @media all and (max-width: 736px) {
+    display: none;
+  }
 `;
 
 export const WordWrapper = styled.span`
@@ -49,24 +63,43 @@ export const WordWrapper = styled.span`
       display: block;
     }
   }
+
+  @media all and (max-width: 736px) {
+    margin-right: 10px;
+  }
 `;
 
 export const Word = styled.span`
   cursor: pointer;
   font-family: 'Raleway', sans-serif;
   font-size: 5rem;
+
+  @media all and (max-width: 736px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const FormWrapper = styled.div`
   display: flex;
   margin-left: -15px;
   margin-right: -15px;
+
+  @media all and (max-width: 736px) {
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: 0;
+  }
 `;
 
 export const FormFooter = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 30px;
+
+  @media all and (max-width: 736px) {
+    justify-content: center;
+    padding: 0 20px;
+  }
 `;
 
 export const Group = styled.div`
@@ -79,6 +112,7 @@ export const Group = styled.div`
     display: inline-block;
     margin-top: 10px;
   }
+
 `;
 
 export const Input = styled.input`
@@ -133,6 +167,12 @@ export const Label = styled.label`
 
 export const Description = styled.div`
   margin: 100px 0;
+
+  @media all and (max-width: 736px) {
+    margin: 50px 0;
+    text-align: center;
+    padding: 15px;
+  }
 `;
 
 export const Button = styled.button`
@@ -156,6 +196,11 @@ export const Button = styled.button`
     background-color: #E05A5B;
     color: #FFFFFF;
    }
+
+  @media all and (max-width: 736px) {
+    width: 100%;
+    font-size: 0.8rem;
+  }
 `;
 
 export default styled.div`

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import Contract from './build/contracts/Word.json';
-import { uniqueId, last } from 'lodash';
+import { uniqueId, last, times } from 'lodash';
 
 import AppStyled, {
   WordWrapper,
@@ -57,7 +57,7 @@ function App() {
       });
     }
   
-    cert();
+    //cert();
   }, []);
 
   useEffect(() => {
@@ -110,10 +110,10 @@ function App() {
       setCurrentPrice(parseInt(price, 10));
     }
 
-    getWords();
-    getAuthors();
-    getPrices();
-    getCurrentPrice();
+    // getWords();
+    // getAuthors();
+    // getPrices();
+    // getCurrentPrice();
   }, []);
 
   function handleWord(event) {
@@ -205,29 +205,47 @@ function App() {
       </Heading>
 
       <Words>
-        { words.map((item, index) => (
-          <WordWrapper
-            key={uniqueId(item)}
-            noSpace={words[index + 1] === '.'}
-          >
-            <Tooltip>
-              <div>
-                Author: 
-                {" "}
-                { getAuthor(index) }
-              </div>
+        <WordWrapper>
+          <Tooltip>
+            <div>
+              Author: Ken
+            </div>
+            <div>
+              Price: 0.29
+            </div>
+          </Tooltip>
+          <Word>
+            Donald
+          </Word>
+        </WordWrapper>
 
-              <div>
-                Price: 
-                {" "}
-                { getPrice(index) } VET
-              </div>
-            </Tooltip>
-            <Word>
-              { item }
-            </Word>
-          </WordWrapper>
-        ))}
+        <WordWrapper>
+          <Tooltip>
+            <div>
+              Author: Ken
+            </div>
+            <div>
+              Price: 0.29
+            </div>
+          </Tooltip>
+          <Word>
+            Trump
+          </Word>
+        </WordWrapper>
+
+        <WordWrapper>
+          <Tooltip>
+            <div>
+              Author: Ken
+            </div>
+            <div>
+              Price: 0.29
+            </div>
+          </Tooltip>
+          <Word>
+            is
+          </Word>
+        </WordWrapper>
       </Words>
 
       <form onSubmit={onSubmit}>
