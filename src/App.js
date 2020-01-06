@@ -205,89 +205,29 @@ function App() {
       </Heading>
 
       <Words>
-        <WordWrapper>
-          <Tooltip>
-            <div>
-              Author: Ken
-            </div>
-            <div>
-              Price: 0.29
-            </div>
-          </Tooltip>
-          <Word>
-            Donald
-          </Word>
-        </WordWrapper>
+        { words.map((item, index) => (
+          <WordWrapper
+            key={uniqueId(item)}
+            noSpace={words[index + 1] === '.'}
+          >
+            <Tooltip>
+              <div>
+                Author: 
+                {" "}
+                { getAuthor(index) }
+              </div>
 
-        <WordWrapper>
-          <Tooltip>
-            <div>
-              Author: Ken
-            </div>
-            <div>
-              Price: 0.29
-            </div>
-          </Tooltip>
-          <Word>
-            Trump
-          </Word>
-        </WordWrapper>
-
-        <WordWrapper>
-          <Tooltip>
-            <div>
-              Author: Ken
-            </div>
-            <div>
-              Price: 0.29
-            </div>
-          </Tooltip>
-          <Word>
-            isw
-          </Word>
-        </WordWrapper>
-
-        <WordWrapper>
-          <Tooltip>
-            <div>
-              Author: Ken
-            </div>
-            <div>
-              Price: 0.29
-            </div>
-          </Tooltip>
-          <Word>
-            isasdfasdf
-          </Word>
-        </WordWrapper>
-        <WordWrapper>
-          <Tooltip>
-            <div>
-              Author: Ken
-            </div>
-            <div>
-              Price: 0.29
-            </div>
-          </Tooltip>
-          <Word>
-            ken
-          </Word>
-        </WordWrapper>
-
-        <WordWrapper>
-          <Tooltip>
-            <div>
-              Author: Ken
-            </div>
-            <div>
-              Price: 0.29
-            </div>
-          </Tooltip>
-          <Word>
-            kai
-          </Word>
-        </WordWrapper>
-
+              <div>
+                Price: 
+                {" "}
+                { getPrice(index) } VET
+              </div>
+            </Tooltip>
+            <Word>
+              { item }
+            </Word>
+          </WordWrapper>
+        ))}
       </Words>
 
       <form onSubmit={onSubmit}>
