@@ -33,6 +33,7 @@ export const Words = styled.div`
   @media all and (max-width: 736px) {
     margin: 20px 0;
     padding: 0 15px;
+    padding-right: 5px;
   }
 `;
 
@@ -98,7 +99,7 @@ export const FormFooter = styled.div`
 
   @media all and (max-width: 736px) {
     justify-content: center;
-    padding: 0 20px;
+    padding: 0 15px;
   }
 `;
 

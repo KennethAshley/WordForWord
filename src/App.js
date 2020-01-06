@@ -243,9 +243,51 @@ function App() {
             </div>
           </Tooltip>
           <Word>
-            is
+            isiii
           </Word>
         </WordWrapper>
+
+        <WordWrapper>
+          <Tooltip>
+            <div>
+              Author: Ken
+            </div>
+            <div>
+              Price: 0.29
+            </div>
+          </Tooltip>
+          <Word>
+            isasdfasdf
+          </Word>
+        </WordWrapper>
+        <WordWrapper>
+          <Tooltip>
+            <div>
+              Author: Ken
+            </div>
+            <div>
+              Price: 0.29
+            </div>
+          </Tooltip>
+          <Word>
+            ken
+          </Word>
+        </WordWrapper>
+
+        <WordWrapper>
+          <Tooltip>
+            <div>
+              Author: Ken
+            </div>
+            <div>
+              Price: 0.29
+            </div>
+          </Tooltip>
+          <Word>
+            kai
+          </Word>
+        </WordWrapper>
+
       </Words>
 
       <form onSubmit={onSubmit}>
