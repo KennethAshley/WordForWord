@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { ethers } from 'ethers';
+import ReactGA from 'react-ga';
 import Contract from './build/contracts/Word.json';
-import { uniqueId, last, times } from 'lodash';
+import { uniqueId, last } from 'lodash';
+import { Helmet } from 'react-helmet';
 
 import AppStyled, {
   WordWrapper,
@@ -36,6 +38,11 @@ function App() {
   const [currentPrice, setCurrentPrice] = useState(0);
 
   useEffect(() => {
+    console.log('hit')
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
+  useEffect(() => {
     async function cert() {
       const signingService = window.connex.vendor.sign('cert');
       const abi = Contract.abi.find(item => item.name === 'owner');
@@ -57,7 +64,7 @@ function App() {
       });
     }
   
-    //cert();
+    cert();
   }, []);
 
   useEffect(() => {
@@ -110,10 +117,10 @@ function App() {
       setCurrentPrice(parseInt(price, 10));
     }
 
-    // getWords();
-    // getAuthors();
-    // getPrices();
-    // getCurrentPrice();
+    getWords();
+    getAuthors();
+    getPrices();
+    getCurrentPrice();
   }, []);
 
   function handleWord(event) {
@@ -188,122 +195,127 @@ function App() {
   }
 
   return (
-    <AppStyled>
-      <Heading>
-        <Title>Word For Word</Title>
-        <LastAuthor>
-          <Underline>
-            { last(authors) }
-          </Underline>
-          {" "}
-          got the last word for
-          {" "}
-          <Underline>
-            { lastPrice } VET
-          </Underline>
-        </LastAuthor>
-      </Heading>
-
-      <Words>
-        { words.map((item, index) => (
-          <WordWrapper
-            key={uniqueId(item)}
-            noSpace={words[index + 1] === '.'}
-          >
-            <Tooltip>
-              <div>
-                Author: 
-                {" "}
-                { getAuthor(index) }
-              </div>
-
-              <div>
-                Price: 
-                {" "}
-                { getPrice(index) } VET
-              </div>
-            </Tooltip>
-            <Word>
-              { item }
-            </Word>
-          </WordWrapper>
-        ))}
-      </Words>
-
-      <form onSubmit={onSubmit}>
-        <FormWrapper>
-          <Group>
-            <Input
-              id="word"
-              type="text"
-              value={word}
-              maxLength="20"
-              onChange={handleWord}
-              placeholder="word"
-            />
-
-            <Label htmlFor="word">Word</Label>
-            <small>A-Z, a-z, and . characters only</small>
-          </Group>
-          <Group>
-            <Input
-              id="author"
-              type="text"
-              value={author}
-              onChange={handleAuthor}
-              placeholder="author"
-            />
-            <Label htmlFor="author">Author</Label>
-            <small>username to identify you</small>
-          </Group>
-
-          <Group>
-            <Input
-              min={currentPrice.toString()}
-              id="amount"
-              type="number"
-              value={amount}
-              onChange={handleAmount}
-              placeholder="Amount"
-            />
-            <Label htmlFor="amount">Amount</Label>
-            <small>pay { amount } VET or whatever you want</small>
-          </Group>
-        </FormWrapper>
-
-        <FormFooter>
-          <Button type="submit">
-            Add your word for a minimum of
+    <Fragment>
+      <Helmet>
+        <title>Word For Word</title>
+      </Helmet>
+      <AppStyled>
+        <Heading>
+          <Title>Word For Word</Title>
+          <LastAuthor>
+            <Underline>
+              { last(authors) }
+            </Underline>
             {" "}
-            { currentPrice } VET
-          </Button>
-        </FormFooter>
-      </form>
+            got the last word for
+            {" "}
+            <Underline>
+              { lastPrice } VET
+            </Underline>
+          </LastAuthor>
+        </Heading>
+
+        <Words>
+          { words.map((item, index) => (
+            <WordWrapper
+              key={uniqueId(item)}
+              noSpace={words[index + 1] === '.'}
+            >
+              <Tooltip>
+                <div>
+                  Author: 
+                  {" "}
+                  { getAuthor(index) }
+                </div>
+
+                <div>
+                  Price: 
+                  {" "}
+                  { getPrice(index) } VET
+                </div>
+              </Tooltip>
+              <Word>
+                { item }
+              </Word>
+            </WordWrapper>
+          ))}
+        </Words>
+
+        <form onSubmit={onSubmit}>
+          <FormWrapper>
+            <Group>
+              <Input
+                id="word"
+                type="text"
+                value={word}
+                maxLength="20"
+                onChange={handleWord}
+                placeholder="word"
+              />
+
+              <Label htmlFor="word">Word</Label>
+              <small>A-Z, a-z, and . characters only</small>
+            </Group>
+            <Group>
+              <Input
+                id="author"
+                type="text"
+                value={author}
+                onChange={handleAuthor}
+                placeholder="author"
+              />
+              <Label htmlFor="author">Author</Label>
+              <small>username to identify you</small>
+            </Group>
+
+            <Group>
+              <Input
+                min={currentPrice.toString()}
+                id="amount"
+                type="number"
+                value={amount}
+                onChange={handleAmount}
+                placeholder="Amount"
+              />
+              <Label htmlFor="amount">Amount</Label>
+              <small>pay { amount } VET or whatever you want</small>
+            </Group>
+          </FormWrapper>
+
+          <FormFooter>
+            <Button type="submit">
+              Add your word for a minimum of
+              {" "}
+              { currentPrice } VET
+            </Button>
+          </FormFooter>
+        </form>
 
 
-      <Description>
-        <h2>
-          What is Word For Word?
-        </h2>
-        <p>
-          Word For Word is a simple Dapp created by
-          {" "}
-          <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://twitter.com/raleigh_ca"
-          >
-            Raleigh_CA
-          </a>
-          {" "}
-          that allows you to append a word to the end of the sentence, providing you pay more VET than the previous word. After a word is added, the price for the next word is increased by 20 VET.
-        </p>
-      </Description>
+        <Description>
+          <h2>
+            What is Word For Word?
+          </h2>
+          <p>
+            Word For Word is a simple Dapp created by
+            {" "}
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              href="https://twitter.com/raleigh_ca"
+            >
+              Raleigh_CA
+            </a>
+            {" "}
+            that allows you to append a word to the end of the sentence, providing you pay more VET than the previous word. After a word is added, the price for the next word is increased by 20 VET.
+          </p>
+        </Description>
 
-      { isOwner &&
-        <Button onClick={withdraw}>Withdraw</Button>
-      }
-    </AppStyled>
+        { isOwner &&
+          <Button onClick={withdraw}>Withdraw</Button>
+        }
+      </AppStyled>
+    </Fragment>
   );
 }
 
